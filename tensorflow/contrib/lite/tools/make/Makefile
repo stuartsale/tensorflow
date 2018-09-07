@@ -60,6 +60,7 @@ INCLUDES := \
 -I. \
 -I$(MAKEFILE_DIR)/../../../../../ \
 -I$(MAKEFILE_DIR)/../../../../../../ \
+$(INCLUDES) \
 -I$(MAKEFILE_DIR)/downloads/ \
 -I$(MAKEFILE_DIR)/downloads/eigen \
 -I$(MAKEFILE_DIR)/downloads/gemmlowp \
@@ -132,7 +133,9 @@ $(MINIMAL_SRCS)
 ifeq ($(BUILD_TYPE),micro)
 CORE_CC_EXCLUDE_SRCS += \
 tensorflow/contrib/lite/mmap_allocation.cc \
-tensorflow/contrib/lite/nnapi_delegate.cc
+tensorflow/contrib/lite/nnapi_delegate.cc \
+tensorflow/contrib/lite/kernels/audio_spectrogram.cc \
+tensorflow/contrib/lite/kernals/internal/spectrogram.cc
 endif
 # Filter out all the excluded files.
 TF_LITE_CC_SRCS := $(filter-out $(CORE_CC_EXCLUDE_SRCS), $(CORE_CC_ALL_SRCS))
